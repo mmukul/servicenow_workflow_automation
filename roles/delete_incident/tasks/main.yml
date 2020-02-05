@@ -1,0 +1,15 @@
+---
+
+# delete an incident
+
+- name: Delete the Incident
+  snow_record:
+    username: "{{ sn_username }}"
+    password: "{{ sn_password }}"
+    instance: "{{ sn_instance }}"
+    state: absent
+    #number: "{{new_incident['record']['number']}}"
+    number: "{{ item }}"
+  with_items:
+        - INC0010005
+        - INC0010006

@@ -1,0 +1,38 @@
+---
+
+# create an Incident
+
+  - name: Create a new incident
+    snow_record:
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      state: present
+      data:
+        short_description: "This is a test ServiceNow incident opened by Ansible"
+        severity: "{{ sn_incident_severity }}"
+        priority: "{{ sn_incident_priority }}"
+    register: new_incident
+    tags: create_incident
+
+  - debug:
+      var: new_incident.record.number
+
+# Create change request
+
+  - name: Create a new change request
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      data:
+        severity: "{{ sn_change_severity }}"
+        priority: "{{ sn_change_priority }}"
+        short_description: "This is a test change opened by Ansible"
+    register: new_change
+    tags: create_change
+
+  - debug:
+      var: new_change.record.number

@@ -1,0 +1,17 @@
+---
+
+# Update an Incident
+
+  - name: Update an incident
+    snow_record:
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      state: present
+      number: INC0010012
+      data:
+        work_notes : "ServiceNow workflow automation.Its awesome"
+    register: update_sn
+
+  - debug:
+       var: update_sn.record

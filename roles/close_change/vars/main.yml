@@ -1,0 +1,18 @@
+---
+
+#snow_record variables
+
+sn_username: admin
+sn_password: ServiceNow@123
+sn_instance: dev65689
+change_number: CHG0030014
+
+#change variables
+
+sn_change_severity: 3
+sn_change_priority: 2
+
+#Incident variables
+
+sn_incident_severity: 2
+sn_incident_priority: 2

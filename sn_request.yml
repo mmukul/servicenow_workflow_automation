@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: no
+  connection: local
+  roles:
+    - { role: create_incident, tags: ["create_inc"] }
+    - { role: delete_incident, tags: ["delete_inc"] }
+    - { role: update_incident, tags: ["update_inc"] }
+    - { role: close_change,   tags: ["close_ch"] }

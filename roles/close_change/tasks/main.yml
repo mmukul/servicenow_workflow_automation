@@ -1,0 +1,101 @@
+---
+
+  - name: Modify a change request to Access
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: -4             ##Access state label
+         assignment_group: "cab approval"
+    register: access_state
+
+  - debug:
+      var: access_state.record.state
+
+
+  - name: Modify a change request to Authorize
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: -3             ##Authorized state label
+    register: auth_state
+
+  - debug:
+      var: auth_state.record.state
+
+
+  - name: Modify a change request to Scheduled
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: -2             ##Scheduled state label
+    register: sch_state
+
+  - debug: 
+      var: sch_state.record.state
+
+
+  - name: Modify a change request to Implement
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: -1             ##Implement state label
+    register: imp_state
+
+  - debug:
+      var: imp_state.record.state
+
+
+  - name: Modify a change request to Review
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: 0             ##Review state label
+    register: rev_state
+    tags: review
+
+  - debug:
+      var: rev_state.record.state
+
+
+  - name: Modify a change request to Closed
+    snow_record:
+      state: present
+      table: change_request
+      username: "{{ sn_username }}"
+      password: "{{ sn_password }}"
+      instance: "{{ sn_instance }}"
+      number: "{{ change_number }}"
+      data:
+         state: 3             ##Closed state label
+         close_code: successful
+         close_notes: "Issue resolved"
+    register: closed_state
+    tags: closed
+
+  - debug:
+      var: closed_state.record.state
