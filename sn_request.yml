@@ -1,5 +1,7 @@
 ---
 
+#role created to automate servicenow workflows with Ansible
+#
 - hosts: localhost
   gather_facts: no
   connection: local
